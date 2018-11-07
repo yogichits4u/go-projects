@@ -6,6 +6,8 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"sort"
+	"strings"
 	"time"
 )
 
@@ -43,7 +45,14 @@ func main() {
 
 	for scanner.Scan() {
 		if len(scanner.Text()) > 15 {
-			fmt.Println(scanner.Text())
+			//fmt.Println(scanner.Text())
+			result := strings.Split(scanner.Text(), ",")
+			for i := range result {
+				str := []string{result[i]}
+				sort.Strings(str)
+				fmt.Printf("%-10s \t", str)
+			}
+			fmt.Println()
 		}
 
 	}
